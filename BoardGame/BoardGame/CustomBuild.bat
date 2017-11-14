@@ -5,6 +5,8 @@ set configuration=%~4
 
 set sdkDir="%solutionDir%\SDK\BOARDGAME_SDK"
 
+if not exist "%solutionDir%bin\%configuration%" mkdir "%solutionDir%bin\%configuration%"
+
 xcopy "%targetDir%*.dll" "%solutionDir%bin\%configuration%" /Y /F
 xcopy "%targetDir%*.lib" "%solutionDir%bin\%configuration%" /Y /F
 
