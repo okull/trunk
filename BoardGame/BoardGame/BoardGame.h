@@ -4,25 +4,33 @@
 // that uses this DLL. This way any other project whose source files include this file see 
 // BOARDGAME_API functions as being imported from a DLL, whereas this DLL sees symbols
 // defined with this macro as being exported.
-#ifdef BOARDGAME_EXPORTS
-#define BOARDGAME_API __declspec(dllexport)
-#else
-#define BOARDGAME_API __declspec(dllimport)
-#endif
+
+//#include <..\Singleton.h>
+
+#include "BoardGameI.h"
 
 // This class is exported from the BoardGame.dll
-class BOARDGAME_API BoardGame {
+class BoardGameImpl : public BoardGame
+{
 public:
-	BoardGame(const wchar_t* title);
+	BoardGameImpl(const wchar_t* title);
+
+	void destroy() override;
 	// TODO: add your methods here.
-	const wchar_t* getTitle()
+	virtual const wchar_t* getTitle() override
 	{
 		return m_title;
 	}
 
+private:
 	const wchar_t* m_title;
 };
 
-extern BOARDGAME_API int nBoardGame;
+extern "C" BOARDGAME_API BoardGame* __cdecl createBoardGame(const wchar_t* title)
+{
+	return new BoardGameImpl(title);
+}
 
-BOARDGAME_API int fnBoardGame(void);
+//extern BOARDGAME_API int nBoardGame;
+
+//BOARDGAME_API int fnBoardGame(void);

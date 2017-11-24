@@ -176,9 +176,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\BoardGame.h" />
+    <ClInclude Include="BoardGame.h" />
+    <ClInclude Include="include\BoardGameI.h" />
     <ClInclude Include="RandomNumber.h" />
     <ClInclude Include="RandomNumberI.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
